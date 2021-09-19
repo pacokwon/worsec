@@ -15,7 +15,7 @@ instance Functor Parser where
 
 instance Applicative Parser where
   -- pure :: a -> Parser a
-  pure result = Parser $ \input -> Right $ ParseResult {result = result, rest = input}
+  pure result = Parser $ \input -> Right $ ParseResult result input
 
   -- (<*>) :: Parser (a -> b) -> Parser a -> Parser b
   p1 <*> p2 = Parser $
