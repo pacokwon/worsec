@@ -3,7 +3,7 @@
 module Lib where
 
 import Control.Applicative ((<|>))
-import Data.Char (digitToInt, isDigit, isSpace)
+import Data.Char (digitToInt, isAlpha, isAlphaNum, isDigit, isSpace)
 import Data.List (stripPrefix)
 import Parser
 
@@ -14,6 +14,12 @@ satisfy predicate = Parser $ \case
 
 char :: Char -> Parser Char
 char c = satisfy (== c)
+
+alpha :: Parser Char
+alpha = satisfy isAlpha
+
+alphaNum :: Parser Char
+alphaNum = satisfy isAlphaNum
 
 anyChar :: Parser Char
 anyChar = Parser $ \case
