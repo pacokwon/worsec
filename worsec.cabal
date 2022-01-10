@@ -28,6 +28,7 @@ executable worsec
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base ^>=4.14.2.0
+    build-depends:    base ^>=4.14.2.0,
+                      vector ^>= 0.12.3.1
     hs-source-dirs:   app
     default-language: Haskell2010
