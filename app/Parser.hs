@@ -1,10 +1,24 @@
 module Parser where
 
 import Control.Applicative
+import Data.Vector
 
-data ParseResult a = ParseResult {result :: a, rest :: String} deriving (Show)
+data ParseResult a = ParseResult
+  { result :: a
+  , rest :: InputState
+  } deriving (Show)
 
-newtype Parser a = Parser {runParser :: String -> Either String (ParseResult a)}
+data Position = Position
+  { col :: Int
+  , line :: Int
+  } deriving (Show)
+
+data InputState = InputState
+  { input :: Vector String
+  , pos   :: Position
+  } deriving (Show)
+
+newtype Parser a = Parser { runParser :: InputState -> Either String (ParseResult a) }
 
 instance Functor Parser where
   -- fmap :: (a -> b) -> Parser a -> Parser b
