@@ -61,6 +61,7 @@ str (p:ps) = do
   c <- satisfy (== p)
   cs <- str ps
   return $ c:cs
+str [] = return []
 
 digit :: Parser Char
 digit = satisfy isDigit
