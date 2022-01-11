@@ -1,7 +1,10 @@
+{-# LANGUAGE NamedFieldPuns #-}
+
 module Parser where
 
 import Control.Applicative
-import Data.Vector
+import Data.Vector (Vector)
+import qualified Data.Vector as V
 
 data ParseResult a = ParseResult
   { result :: a
@@ -17,6 +20,12 @@ data InputState = InputState
   { input :: Vector String
   , pos   :: Position
   } deriving (Show)
+
+fromString :: String -> InputState
+fromString str = InputState { input, pos }
+  where
+    input = V.fromList . lines $ str
+    pos   = Position 0 0
 
 newtype Parser a = Parser { runParser :: InputState -> Either String (ParseResult a) }
 
